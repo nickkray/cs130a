@@ -1,12 +1,5 @@
-//
-//  main.cpp
-//  part1
-//
-//  Created by Nick Ray on 10/1/15.
-//  Copyright (c) 2015 test. All rights reserved.
-//
-
 #include <iostream>
+
 
 int main(int argc, const char * argv[]) {
     // insert code here...
