@@ -1,14 +1,24 @@
-//
-//  Wall.h
-//  
-//
-//  Created by Nick Ray on 10/1/15.
-//
-//
-
 #ifndef ____Wall__
 #define ____Wall__
 
-#include <stdio.h>
 
-#endif /* defined(____Wall__) */
+class Wall{
+private:
+    linkedlist<WallPost> posts;
+    string username;
+public:
+    WallPost();
+    ~WallPost();
+    
+    addPost(WallPost newPost);
+    removePost(int index); //remove by index. without index, remove last
+
+    string getUsername();
+    setUsername(string newUsername);
+    
+    string printAllPosts();
+    
+    createWallFromString();
+};
+
+#endif
