@@ -1,33 +1,31 @@
 #include "linkedlist.h"
-
-
 //public methods
 
 template <typename item>
-void linkedlist<item>::add(item li){
+void linkedlist<item>::add(item li){        //add item
     node* currentNode = new node;
     currentNode->data = li;
-    if (count > -1){
+    if (count > 0){
         currentNode->next = first;
         currentNode->prev = last;
         last->next = currentNode;
         last = currentNode;
         count++;
     }
-    else if (count == -1){
+    else if (count == 0){
         first = currentNode;
         first->next = currentNode;
         first->prev = currentNode;
         last = currentNode;
         last->next = currentNode;
         last->prev = currentNode;
-        count = 0;
+        count = 1;
     }
     
     
     
     template <typename item>
-    void linkedlist<item>::removeAt(int index){
+    void linkedlist<item>::removeAt(int index){     //remove at index
         if (index <= count){
             node* currentNode = last;
             for (int i = 0; i <= index; i++){
@@ -41,26 +39,10 @@ void linkedlist<item>::add(item li){
     }
     
     
-    
     template <typename item>
-    item linkedlist<item>::findAt(int index){
+    item linkedlist<item>::findAt(int index){       //find at index
         node* currentNode = first;
-        if (index <= count && index > -1){
-            int i = 0;
-            while(i < index){
-                currentNode = currentNode->next;
-                i++;
-            }
-        }
-        
-        return currentNode->data;
-    }
-    
-    
-    template <typename item>
-    item linkedlist<item>::findAt(int index){
-        node* currentNode = first;
-        if (index < 0 ) index =count +1 + index;
+        if (index < 0 ) index =count + index;
         if (index <= count && index > -1){
             int i = 0;
             while(i < index){
@@ -75,26 +57,26 @@ void linkedlist<item>::add(item li){
     
     linkedlist<item>::First()
     template <typename item>
-    item linkedlist<item>::First(){
+    item linkedlist<item>::First(){     //first item
         return first->data;
     }
     
     template <typename item>
-    item linkedlist<item>::Last(){
+    item linkedlist<item>::Last(){      //last item
         return last->data;
     }
     
     
     template <typename item>
-    int linkedlist<item>::count(){
+    int linkedlist<item>::count(){      //count that shit
         return count;
     }
     
     
     template <typename item>
-    void linkedlist<item>::clear(){
+    void linkedlist<item>::clear(){     //clear that shit
         node* currentNode = first;
-        while(count > -1){
+        while(count > 0){
             node* tmp = currentNode;
             currentNode = currentNode->next;
             delete tmp;
@@ -104,8 +86,13 @@ void linkedlist<item>::add(item li){
     
     
     template <typename item>
-    linkedlist<item>::~linkedlist(){
-        if (count > -1){
+    linkedlist<item>::~linkedlist(){    //deconstructor
+        if (count > 0){
             clear();
         }
+    }
+    
+    template <typename item>
+    linkedlist<item>::linkedlist(){     //constructor
+        count=0;
     }
