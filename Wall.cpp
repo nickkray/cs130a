@@ -23,30 +23,30 @@
 */
 
 
-Wall::getUsername(){
+string Wall::getUsername const(){
     return username;
 }
 
-Wall::setUsername(string newUsername){
+void Wall::setUsername(string newUsername){
     username=newUsername;
 }
 
-Wall::addPost(WallPost newPost){
+void Wall::addPost(WallPost newPost){
     posts.add(newPost);
 }
 
-Wall::removePost(int index){
+void Wall::removePost(int index){
     if(index==NULL){
         index=-1;
     }
     posts.removeAt(index);
 }
 
-string Wall::printAllPosts(){
+string Wall::printAllPosts const(){
     
 }
 
-createWallFromString(){
+WallPost createWallFromString(){
     
 }
 
