@@ -14,6 +14,8 @@ class WallPost{
     public:
                 //const/deconst.
         WallPost();
+        WallPost(string newText, int newMood);
+        WallPost(string newText);
         ~WallPost();
                 //getters
         string getText const();
