@@ -16,13 +16,13 @@ private:
 public:
     linkedlist();
     ~linkedlist();
-    item First();
-    item Last();
+    item First() const;
+    item Last() const;
     
-    int count();
+    int count const();
     void add(item item);
     void removeAt(int index);
-    item findAt(int index);
+    item findAt const(int index);
     void clear();
 };
 #endif
