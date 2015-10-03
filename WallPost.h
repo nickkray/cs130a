@@ -16,15 +16,15 @@ class WallPost{
         WallPost();
         ~WallPost();
                 //getters
-        string getText();
-        time_t getTime();
-        int getMood();
+        string getText const();
+        time_t getTime const();
+        int getMood const();
                 //setters
-        setText(string newText);
-        setTime(time_t newTime);
-        setMood(int newMood);
+        void setText(string newText);
+        void setTime(time_t newTime);
+        void setMood(int newMood);
                 //print our post
-        string printPost();
+        string printPost const();
 };
 
 #endif
