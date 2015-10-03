@@ -28,31 +28,31 @@
 */
 
 
-string WallPost::getText(){
+string WallPost::getText const(){
     return text;
 }
 
-time_c WallPost::getTime(){
+time_c WallPost::getTime const(){
     return timestamp;
 }
 
-int WallPost::getMood(){
+int WallPost::getMood const(){
     return mood;
 }
 
-WallPost::setText(string newText){
+void WallPost::setText(string newText){
     text=newText;
 }
 
-WallPost::setTime(time_t newTime){
+void WallPost::setTime(time_t newTime){
     timestamp=newTime;
 }
 
-WallPost::setMood(int newMood){
+void WallPost::setMood(int newMood){
     mood=newMood;
 }
 
-WallPost::printPost(){
+void WallPost::printPost() const{
     stringstream ss;
     ss<<timestamp;
     string timeStampStr = ss.str();
