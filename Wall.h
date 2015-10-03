@@ -10,15 +10,15 @@ public:
     WallPost();
     ~WallPost();
     
-    addPost(WallPost newPost);
-    removePost(int index); //remove by index. without index, remove last
+    void addPost(WallPost newPost);
+    void removePost(int index); //remove by index. without index, remove last
 
     string getUsername();
-    setUsername(string newUsername);
+    void setUsername(string newUsername);
     
     string printAllPosts();
     
-    createWallFromString();
+    void createWallFromString();
 };
 
 #endif
