@@ -1,42 +1,14 @@
-#include "WallPost.h"
+#include "Wallpost.h"
 
-/*
-
- using namespace std;
- 
- class WallPost{
- private:
- string text;
- time_t timestamp;
- int mood;
- public:
- //const/deconst.
- WallPost();
- ~WallPost();
- //getters
- string getText();
- time_t getTime();
- int getMood();
- //setters
- setText(string newText);
- setTime(time_t newTime);
- setMood(int newMood);
- //print our post
- string printPost();
- };
-
-*/
-
-
-string WallPost::getText const(){
+string WallPost::getText () const{
     return text;
 }
 
-time_c WallPost::getTime const(){
+time_c WallPost::getTime () const{
     return timestamp;
 }
 
-int WallPost::getMood const(){
+int WallPost::getMood () const{
     return mood;
 }
 

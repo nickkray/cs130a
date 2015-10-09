@@ -1,29 +1,10 @@
+#include "Wallpost.h"
 #include "Wall.h"
-/*
+#include <string>
 
- class WallPost{
- private:
- linkedlist<WallPost> posts;
- string username;
- public:
- WallPost();
- ~WallPost();
- 
- addPost(WallPost newPost);
- removePost(int index); //remove by index. without index, remove last
- 
- string getUsername();
- setUsername(string newUsername);
- 
- string printAllPosts();
- 
- createWallFromString();
- };
+using namespace std;
 
-*/
-
-
-string Wall::getUsername const(){
+string Wall::getUsername () const{
     return username;
 }
 
@@ -42,11 +23,10 @@ void Wall::removePost(int index){
     posts.removeAt(index);
 }
 
-string Wall::printAllPosts const(){
+string Wall::printAllPosts () const{
     
 }
 
-WallPost createWallFromString(){
+WallPost Wall::createWallFromString(){
     
 }
-

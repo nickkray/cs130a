@@ -1,19 +1,21 @@
 #ifndef ____UserNetwork__
 #define ____UserNetwork__
 
-class UserNetwork{
-private:
-    linkedlist<User> userList;
-public:
-    UserNetwork();
-    ~UserNetwork();
-    
-    void addUser(User newUser);
-    void removeUser(string userName); //remove by username
+#include "UserNetwork.cpp"
 
-    string printUsers const();
-	linkedlist<User> readUsers const();
-   };
+class UserNetwork{
+    private:
+        linkedlist<User> userList;
+    public:
+        UserNetwork();
+        ~UserNetwork();
+    
+        void addUser(User newUser);
+        void removeUser(string userName); //remove by username
+
+        string printUsers () const;
+        linkedlist<User> readUsers () const;
+};
 
 
 #endif

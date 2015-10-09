@@ -1,4 +1,9 @@
 #include "User.h"
+
+
+#include <string>
+#include <sstream>
+
 /*
 class User{
 private:
@@ -14,9 +19,9 @@ public:
     ~User();
     
 	string getUsername cosnt();
-	string getPassword const();
-	string getName const();
-	string getGender const();
+	string getPassword () const;
+	string getName () const;
+	string getGender () const;
 	
 	void setPassword(string newPass);
 	void setName(string newName);
@@ -26,7 +31,7 @@ public:
 	void addWallPost(string text, int mood);
 	void deleteWallPost();
 	
-	string printUserWall const();
+	string printUserWall () const;
 	void readUserWall(string userWall);
 	
 };
@@ -52,19 +57,19 @@ User::~User(){
 	delete userWall;
 }
 
-string User::getUsername const(){
+string User::getUsername () const{
 	return username;
 }
 
-string User::getPassword const(){
+string User::getPassword () const{
 	return password;
 }
 
-string User::getName const(){
+string User::getName () const{
 	return name;
 }
 
-string User::getGender const(){
+string User::getGender () const{
 	return gender;
 }
 
@@ -89,7 +94,7 @@ void User::addWallPost(string text, int mood){
 void User::deleteWallPost(){
 }
 
-string User::printUserWall const(){
+string User::printUserWall () const{
 }
 
 void User::readUserWall(string userWall){

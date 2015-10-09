@@ -1,6 +1,8 @@
 #ifndef _linkedlist_h
 #define _linkedlist_h
 
+#include "linkedlist.cpp"
+
 template <typename item>
 class linkedlist{
 private:

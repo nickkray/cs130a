@@ -1,6 +1,10 @@
 #ifndef ____Wall__
 #define ____Wall__
 
+#include "Wall.cpp"
+#include "linkedlist.cpp"
+#include "WallPost.cpp"
+
 
 class Wall{
 private:
@@ -13,10 +17,10 @@ public:
     void addPost(WallPost newPost);
     void removePost(int index); //remove by index. without index, remove last
 
-    string getUsername const();
+    string getUsername () const;
     void setUsername(string newUsername);
     
-    string printAllPosts const();
+    string printAllPosts () const;
     
     WallPost createWallFromString();
 };

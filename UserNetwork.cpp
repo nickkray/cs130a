@@ -1,47 +1,26 @@
-/*
-#ifndef ____UserNetwork__
-#define ____UserNetwork__
-
-class UserNetwork{
-private:
-    linkedlist<User> userList;
-public:
-    UserNetwork();
-    ~UserNetwork();
-    
-    void addUser(User newUser);
-    void removeUser(string userName); //remove by username
-
-    string printUsers const();
-	linkedlist<User> readUsers const();
-   };
-
-
-#endif
-*/
+#include "UserNetwork.h"
+#include "User.h"
 
 UserNetwork::UserNetwork(){
-	userList = new linkedlist<User>();
+    userList = new linkedlist<User>();
 }
 
 UserNetwork::~UserNetwork(){
-	delete userList;
+    delete userList;
 }
 
 void UserNetwork::addUser(User newUser){
-	
+    
 }
 
 void UserNetwork::removeUser(string userName){
-	
+    
 }
 
-string UserNetwork::printUsers const(){
-	
+string UserNetwork::printUsers () const{
+    return "hey";
 }
 
-linkedlist<User> UserNetwork::readUsers const(){
-
+linkedlist<User> UserNetwork::readUsers () const{
+    return NULL;
 }
-
-
