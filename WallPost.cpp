@@ -1,14 +1,17 @@
-#include "Wallpost.h"
+#include "WallPost.h"
+#include <string>
 
-string WallPost::getText () const{
+using namespace std;
+
+string WallPost::getText() const{
     return text;
 }
 
-time_c WallPost::getTime () const{
+time_t WallPost::getTime() const{
     return timestamp;
 }
 
-int WallPost::getMood () const{
+int WallPost::getMood() const{
     return mood;
 }
 
@@ -24,22 +27,27 @@ void WallPost::setMood(int newMood){
     mood=newMood;
 }
 
-void WallPost::printPost() const{
-    stringstream ss;
+string WallPost::printPost() const{
+    /*stringstream ss;
     ss<<timestamp;
     string timeStampStr = ss.str();
-    return "Feeling "+to_string(mood)+" - "+text+" ("+timeStampStr+")"
+    return "Feeling "+to_string(mood)+" - "+text+" ("+timeStampStr+")";*/
+    return getText();
 }
 
 WallPost::WallPost(string newText, int newMood){
     text=newText;
     mood=newMood;
-    time_t = time(NULL);
+    time_t timestamp = time(NULL);
 }
 
 WallPost::WallPost(string newText){
     text=newText;
-    time_t = time(NULL);
+    time_t timestamp = time(NULL);
+}
+
+WallPost::WallPost(){
+    
 }
 
 WallPost::~WallPost(){

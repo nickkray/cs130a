@@ -1,8 +1,6 @@
 #ifndef ____WallPost__
 #define ____WallPost__
 
-#include "WallPost.cpp"
-
 #include <string>
 
 using namespace std;

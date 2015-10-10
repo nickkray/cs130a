@@ -1,10 +1,10 @@
-#include "Wallpost.h"
 #include "Wall.h"
+#include "WallPost.h"
+#include "linkedlist.h"
 #include <string>
-
 using namespace std;
 
-string Wall::getUsername () const{
+string Wall::getUsername() const{
     return username;
 }
 
@@ -23,10 +23,29 @@ void Wall::removePost(int index){
     posts.removeAt(index);
 }
 
-string Wall::printAllPosts () const{
+string Wall::printAllPosts() const{
+    WallPost *ourPosts=posts.returnEverything();
+    string postString;
+    for(int i=0;i<sizeof(ourPosts)/sizeof(*ourPosts);i++){
+        postString=postString+"\n"+ourPosts[i].printPost();
+    }
+    return postString;
+}
+
+void Wall::createWallFromString(string wallString){
     
 }
 
-WallPost Wall::createWallFromString(){
+
+Wall::Wall(){
+    
+};
+
+Wall::~Wall(){
     
 }
+
+/*
+ "WallPost::WallPost()", referenced from:
+ linkedlist<WallPost>::node::node() in Wall.o
+*/

@@ -1,44 +1,8 @@
 #include "User.h"
-
-
-#include <string>
-#include <sstream>
-
-/*
-class User{
-private:
-    Wall userWall;
-    string username;
-	string password;
-	string name;
-	string gender;
-	
-public:
-	User(string newName, string newPass, string newName, string newGen);
-	User(string newName, string newPass, string newName); //chillin on gender
-    ~User();
-    
-	string getUsername cosnt();
-	string getPassword () const;
-	string getName () const;
-	string getGender () const;
-	
-	void setPassword(string newPass);
-	void setName(string newName);
-	void setgender(string newGender);
-	
-	void addWallPost(string text);
-	void addWallPost(string text, int mood);
-	void deleteWallPost();
-	
-	string printUserWall () const;
-	void readUserWall(string userWall);
-	
-};
-*/
+#include "Wall.h"
 
 User::User(string newUsername, string newPass, string newName, string newGen){
-	userWall = new Wall(newName);
+    userWall = Wall();
 	username = newUsername;
 	password = newPass;
 	name = newName;
@@ -46,7 +10,7 @@ User::User(string newUsername, string newPass, string newName, string newGen){
 }
 
 User::User(string newUsername, string newPass, string newName){
-	userWall = new Wall;
+	userWall = Wall();
 	username = newUsername;
 	password = newPass;
 	name = newName;
@@ -54,7 +18,7 @@ User::User(string newUsername, string newPass, string newName){
 }
 
 User::~User(){
-	delete userWall;
+    userWall.~Wall();
 }
 
 string User::getUsername () const{
@@ -73,29 +37,32 @@ string User::getGender () const{
 	return gender;
 }
 
-void setPassword(string newPass){
+void User::setPassword(string newPass){
 	password = newPass;
 }
 
-void setName(string newName){
+void User::setName(string newName){
 	name = newName;
 }
 
-void setgender(string newGender){
+void User::setgender(string newGender){
 	gender = newGender;
 }
 
 void User::addWallPost(string text){
+    userWall.addPost(WallPost(text));
 }
 
 void User::addWallPost(string text, int mood){
+    userWall.addPost(WallPost(text,mood));
 }
 
 void User::deleteWallPost(){
 }
 
-string User::printUserWall () const{
-}
+string User::printUserWall() const{
+    return userWall.printAllPosts();
+};
 
 void User::readUserWall(string userWall){
 }

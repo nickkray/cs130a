@@ -7,7 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		16D4760F1BC636A900697883 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16D4760E1BC636A900697883 /* main.cpp */; };
+		16D476211BC636B600697883 /* linkedlist.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16D476151BC636B600697883 /* linkedlist.cpp */; };
+		16D476221BC636B600697883 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16D476171BC636B600697883 /* main.cpp */; };
+		16D476231BC636B600697883 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 16D476181BC636B600697883 /* README.md */; };
+		16D476241BC636B600697883 /* User.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16D476191BC636B600697883 /* User.cpp */; };
+		16D476251BC636B600697883 /* UserNetwork.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16D4761B1BC636B600697883 /* UserNetwork.cpp */; };
+		16D476261BC636B600697883 /* Wall.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16D4761D1BC636B600697883 /* Wall.cpp */; };
+		16D476271BC636B600697883 /* WallPost.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16D4761F1BC636B600697883 /* WallPost.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -24,7 +30,18 @@
 
 /* Begin PBXFileReference section */
 		16D4760B1BC636A900697883 /* cs130a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = cs130a; sourceTree = BUILT_PRODUCTS_DIR; };
-		16D4760E1BC636A900697883 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		16D476151BC636B600697883 /* linkedlist.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = linkedlist.cpp; path = ../../linkedlist.cpp; sourceTree = "<group>"; };
+		16D476161BC636B600697883 /* linkedlist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = linkedlist.h; path = ../../linkedlist.h; sourceTree = "<group>"; };
+		16D476171BC636B600697883 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = ../../main.cpp; sourceTree = "<group>"; };
+		16D476181BC636B600697883 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../../README.md; sourceTree = "<group>"; };
+		16D476191BC636B600697883 /* User.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = User.cpp; path = ../../User.cpp; sourceTree = "<group>"; };
+		16D4761A1BC636B600697883 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = User.h; path = ../../User.h; sourceTree = "<group>"; };
+		16D4761B1BC636B600697883 /* UserNetwork.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = UserNetwork.cpp; path = ../../UserNetwork.cpp; sourceTree = "<group>"; };
+		16D4761C1BC636B600697883 /* UserNetwork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserNetwork.h; path = ../../UserNetwork.h; sourceTree = "<group>"; };
+		16D4761D1BC636B600697883 /* Wall.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Wall.cpp; path = ../../Wall.cpp; sourceTree = "<group>"; };
+		16D4761E1BC636B600697883 /* Wall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Wall.h; path = ../../Wall.h; sourceTree = "<group>"; };
+		16D4761F1BC636B600697883 /* WallPost.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = WallPost.cpp; path = ../../WallPost.cpp; sourceTree = "<group>"; };
+		16D476201BC636B600697883 /* WallPost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WallPost.h; path = ../../WallPost.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,7 +74,18 @@
 		16D4760D1BC636A900697883 /* cs130a */ = {
 			isa = PBXGroup;
 			children = (
-				16D4760E1BC636A900697883 /* main.cpp */,
+				16D476151BC636B600697883 /* linkedlist.cpp */,
+				16D476161BC636B600697883 /* linkedlist.h */,
+				16D476171BC636B600697883 /* main.cpp */,
+				16D476181BC636B600697883 /* README.md */,
+				16D476191BC636B600697883 /* User.cpp */,
+				16D4761A1BC636B600697883 /* User.h */,
+				16D4761B1BC636B600697883 /* UserNetwork.cpp */,
+				16D4761C1BC636B600697883 /* UserNetwork.h */,
+				16D4761D1BC636B600697883 /* Wall.cpp */,
+				16D4761E1BC636B600697883 /* Wall.h */,
+				16D4761F1BC636B600697883 /* WallPost.cpp */,
+				16D476201BC636B600697883 /* WallPost.h */,
 			);
 			path = cs130a;
 			sourceTree = "<group>";
@@ -118,7 +146,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				16D4760F1BC636A900697883 /* main.cpp in Sources */,
+				16D476241BC636B600697883 /* User.cpp in Sources */,
+				16D476251BC636B600697883 /* UserNetwork.cpp in Sources */,
+				16D476231BC636B600697883 /* README.md in Sources */,
+				16D476271BC636B600697883 /* WallPost.cpp in Sources */,
+				16D476261BC636B600697883 /* Wall.cpp in Sources */,
+				16D476221BC636B600697883 /* main.cpp in Sources */,
+				16D476211BC636B600697883 /* linkedlist.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,8 +1,9 @@
-#ifndef ____User__
-#define ____User__
+#ifndef ____User_h
+#define ____User_h
 
-#include "User.cpp"
-
+#include <string>
+#include "Wall.h"
+using namespace std;
 
 class User{
 private:
@@ -13,8 +14,8 @@ private:
     string gender;
 	
 public:
-     User(string newName, string newPass, string newName, string newGen);
-     User(string newName, string newPass, string newName); //chillin on gender
+     User(string newUsername, string newPass, string newName, string newGen);
+     User(string newUsername, string newPass, string newName); //chillin on gender
     ~User();
     
      string getUsername () const;
@@ -24,6 +25,7 @@ public:
 	
      void setName(string newName);
      void setgender(string newGender);
+     void setPassword(string newPass);
 	
      void addWallPost(string text);
      void addWallPost(string text, int mood);
