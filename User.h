@@ -34,7 +34,7 @@ public:
      string printUserWall () const;
      void readUserWall(string userWall);
     
-     int User::countPosts();
+     int countPosts();
 };
 
 #endif

@@ -24,7 +24,7 @@ public:
     void createWallFromString(string wallString);
     
     int countPosts(){
-        return posts.;
+        return posts.countNodes();
     };
 };
 
