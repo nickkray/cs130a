@@ -29,10 +29,12 @@ public:
 	
      void addWallPost(string text);
      void addWallPost(string text, int mood);
-     void deleteWallPost();
-     
+     bool deleteWallPost(int i);
+    
      string printUserWall () const;
      void readUserWall(string userWall);
+    
+     int User::countPosts();
 };
 
 #endif

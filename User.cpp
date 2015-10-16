@@ -57,7 +57,8 @@ void User::addWallPost(string text, int mood){
     userWall.addPost(WallPost(text,mood));
 }
 
-void User::deleteWallPost(){
+bool User::deleteWallPost(int i){
+    return userWall.removePost(i);
 }
 
 string User::printUserWall() const{
@@ -65,4 +66,8 @@ string User::printUserWall() const{
 };
 
 void User::readUserWall(string userWall){
+}
+
+int User::countPosts(){
+    return userWall.countPosts();
 }

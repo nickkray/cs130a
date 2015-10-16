@@ -13,7 +13,7 @@ class UserNetwork{
     
         void addUser(string newUsername, string newPass, string newName, string newGen);
         void removeUser(string userName); //remove by username
-        User findUser(string userName) const;//return a copy of the user
+        User* findUser(string userName);//return a copy of the user
 
         string printUsers() const;
         linkedlist<User> readUsers() const;

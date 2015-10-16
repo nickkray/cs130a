@@ -15,16 +15,14 @@ void UserNetwork::addUser(string newUsername, string newPass, string newName, st
     usernames.add(newUsername);
 }
 
-User UserNetwork::findUser(string userName) const{  //return a copy of the user and their wall posts
-    cout<<"the first element in our usernames is "+usernames.First();
+User* UserNetwork::findUser(string userName){
     int index=usernames.find(userName);
-    std::cout<<"\n("+to_string(index)+") is the index where we found it\n";
     if(index!=-1){
-        User tmp=userList.findAt(index);
-        return tmp;
+        return userList.findAt(index);
     }else{
-        return User("","","","");
+        return NULL;
     }
+    return NULL;
 }
 
 void UserNetwork::removeUser(string userName){

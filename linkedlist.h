@@ -23,12 +23,11 @@ public:
     
     int countNodes() const;
     void add(item li);
-    void removeAt(int index);
-    item findAt(int index) const;
+    bool removeAt(int index);
+    item* findAt(int index) const;
     void clear();
     
     int find(item li) const;
-    item* returnEverything() const;
     
 };
 
@@ -49,26 +48,11 @@ public:
  */
 
 template <typename item>
-item* linkedlist<item>::returnEverything() const{
-    int len=countNodes();
-    item* arr[len];
-    node* currentNode = first;
-    int index=0;
-    if(currentNode){
-        while(currentNode->next){
-            arr[index]= new item(currentNode->data);
-            index++;
-            currentNode=currentNode->next;
-        }
-        return arr[len];
-    }else{
-        return nullptr;
-    }
-}
-
-template <typename item>
 int linkedlist<item>::find(item li) const{
     node* currentNode = first;
+    if(!currentNode){
+        return -1;
+    }
     int index=0;
     while(currentNode->next){
         if(currentNode->data==li){
@@ -104,7 +88,7 @@ void linkedlist<item>::add(item li){        //add item
 
 
 template <typename item>
-void linkedlist<item>::removeAt(int index){     //remove at index
+bool linkedlist<item>::removeAt(int index){     //remove at index,false if unsuccessful
     if (index <= count){
         node* currentNode = last;
         for (int i = 0; i <= index; i++){
@@ -114,12 +98,15 @@ void linkedlist<item>::removeAt(int index){     //remove at index
         currentNode->next->prev = currentNode->prev;
         delete currentNode;
         count--;
+    }else{
+        return false;
     }
+    return true;
 }
 
 
 template <typename item>
-item linkedlist<item>::findAt(int index) const{       //find at index
+item* linkedlist<item>::findAt(int index) const{       //find at index
     node* currentNode = first;
     if (index < 0 ) index =count + index;
     if (index <= count && index > -1){
@@ -130,7 +117,7 @@ item linkedlist<item>::findAt(int index) const{       //find at index
         }
     }
     
-    return currentNode->data;
+    return &(currentNode->data);
 }
 
 

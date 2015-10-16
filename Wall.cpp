@@ -16,18 +16,17 @@ void Wall::addPost(WallPost newPost){
     posts.add(newPost);
 }
 
-void Wall::removePost(int index){
-    if(index==NULL){
-        index=-1;
-    }
-    posts.removeAt(index);
+bool Wall::removePost(int index){
+    return posts.removeAt(index);
 }
 
 string Wall::printAllPosts() const{
-    WallPost *ourPosts=posts.returnEverything();
+    if(posts.countNodes()==0){
+        return "Nothing here yet, post something!";
+    }
     string postString;
-    for(int i=0;i<sizeof(ourPosts)/sizeof(*ourPosts);i++){
-        postString=postString+"\n"+ourPosts[i].printPost();
+    for(int i=0;i<posts.countNodes();i++){
+        postString+=to_string(i)+") "+posts.findAt(i)->printPost()+"\n";
     }
     return postString;
 }

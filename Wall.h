@@ -14,7 +14,7 @@ public:
     ~Wall();
     
     void addPost(WallPost newPost);
-    void removePost(int index); //remove by index. without index, remove last
+    bool removePost(int index); //remove by index. without index, remove last
 
     string getUsername () const;
     void setUsername(string newUsername);
@@ -22,6 +22,10 @@ public:
     string printAllPosts () const;
     
     void createWallFromString(string wallString);
+    
+    int countPosts(){
+        return posts.;
+    };
 };
 
 #endif
