@@ -54,7 +54,7 @@ int linkedlist<item>::find(item li) const{
         return -1;
     }
     int index=0;
-    while(currentNode->next){
+    while(index<count){
         if(currentNode->data==li){
             return index;
         }
@@ -78,9 +78,9 @@ void linkedlist<item>::add(item li){        //add item
     else if (count == 0){
         first = currentNode;
         first->next = currentNode;
-        first->prev = currentNode;
+        //first->prev = currentNode;
         last = currentNode;
-        last->next = currentNode;
+        //last->next = currentNode;
         last->prev = currentNode;
         count = 1;
     }
@@ -90,12 +90,19 @@ void linkedlist<item>::add(item li){        //add item
 template <typename item>
 bool linkedlist<item>::removeAt(int index){     //remove at index,false if unsuccessful
     if (index <= count){
-        node* currentNode = last;
+        node* currentNode = first;
         for (int i = 0; i <= index; i++){
             currentNode = currentNode->next;
         }
         currentNode->prev->next = currentNode->next;
         currentNode->next->prev = currentNode->prev;
+        if(index==0){ // if first, fix first
+            first = currentNode->next;
+        }
+        if(index<count-1){ //if last, fix last
+            last = currentNode->prev;
+        }
+
         delete currentNode;
         count--;
     }else{

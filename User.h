@@ -34,7 +34,11 @@ public:
      string printUserWall () const;
      void readUserWall(string userWall);
     
+     string serializeUser() const;
+    
      int countPosts();
+    
+     string serializeWall() const;
 };
 
 #endif

@@ -44,6 +44,11 @@ WallPost::WallPost(string newText, int newMood){
 WallPost::WallPost(string newText){
     text=newText;
     time_t timestamp = time(NULL);
+    mood = 5;
+}
+
+string WallPost::printPostData() const{
+    return text+">>"+to_string(timestamp)+">>"+to_string(mood);
 }
 
 WallPost::WallPost(){

@@ -3,6 +3,7 @@
 #include <string>
 #include <sstream>
 
+
 #include "linkedlist.h"
 
 #include "WallPost.h"
@@ -20,10 +21,43 @@ void loggedIn(UserNetwork &network, string username);
 void mainMenu(UserNetwork &network);
 void printLogo();
 void printLine();
+void writeStringToFile(string filename, string input);
+string readFromFile(string filename);
+
+linkedlist<string> split(string s, string delimiter);
 
 int main(int argc, const char * argv[]) {
     
-    UserNetwork network = UserNetwork();
+    UserNetwork network = UserNetwork("network.data");
+    
+    /*
+     testing***********************
+     */
+    /*
+    network1.addUser("boris", "pass", "boris", "m");
+    network1.findUser("boris")->addWallPost("test post", 1);
+    network1.findUser("boris")->addWallPost("test post3", 5);
+    network1.findUser("boris")->addWallPost("test pos235235t", 2);
+    network1.findUser("boris")->addWallPost("t235235est post", 9);
+    network1.findUser("boris")->addWallPost("no mood post");
+    network1.findUser("boris")->addWallPost("no mood post2");
+    
+    network1.addUser("nick", "pass", "nick", "m");
+    network1.findUser("nick")->addWallPost("t4est post", 1);
+    network1.findUser("nick")->addWallPost("te3st post3", 5);
+    network1.findUser("nick")->addWallPost("te1st pos235235t", 2);
+    network1.findUser("nick")->addWallPost("t235235est 343post", 9);
+    network1.findUser("nick")->addWallPost("no 34moo3d post");
+    network1.findUser("nick")->addWallPost("n2o m4ood 3po4st2");
+    
+    network1.writeToFile("network.data");
+    
+    UserNetwork network = UserNetwork("network.data");
+    */
+//    UserNetwork network
+    
+    //**********************
+    
     mainMenu(network);
     return 0;
 }
@@ -54,7 +88,7 @@ void mainMenu(UserNetwork &network){
             break;
             case 2://login
                 login(network);
-                break;
+            break;
         }
     }
 }
@@ -72,26 +106,23 @@ void createUser(UserNetwork &network){
     cin>>username;
     cout<<"Create a password:";
     cin>>password;
-    cout<<"Gender? (Press enter to skip):";
+    cout<<"Gender?";
     cin>>gender;
-    cout<<"Creating user...\n";
+    
+    if(username!="" && password!="" && name !="" && gender!=""){
+        cout<<"Creating user...\n";
 
     
-    if(!network.findUser(username)){
-    
-        if(gender!=""){
-            network.addUser(username, password, name, gender);
+        if(network.findUser(username)==NULL){// check for duplicate
+                network.addUser(username, password, name, gender);
+            cout<<"User creation successful("+username+")!"<<endl;
         }else{
-            //network.addUser(username, password, name); put in this constructor later
+            cout<<"Duplicate username. Try again: "<<endl;
         }
-        //new user is createn
-
-        //made a demo post
-        cout<<"User creation successful("+username+")!"<<endl;
+        printLine();
     }else{
-        cout<<"Duplicate username. Try again: "<<endl;
+        cout << "Username, password, and name cannot be blank.";
     }
-    printLine();
 }
 
 void login(UserNetwork &network){
@@ -133,11 +164,13 @@ void loggedIn(UserNetwork &network, string username){
         cout<<"1. Display Wall"<<endl;
         cout<<"2. Add new post"<<endl;
         cout<<"3. Delete new post"<<endl;
-        cout<<"4. Logout\n"<<endl;
+        cout<<"4. Save and Logout\n"<<endl;
     
         string index;
         cin>>index;
         if(index=="4"){
+            network.writeToFile("network.data");
+            cout << "Save successful. Goodbye!"<<endl;
             break;
         }else if(index=="1"){
             printLine();
@@ -169,8 +202,11 @@ void loggedIn(UserNetwork &network, string username){
                 }
             }
         }else{
-            cout<<"Illegal input."<<endl;
+            cout<<"Illegal input. Press enter to continue."<<endl;
+            cin.ignore();
         }
-        printLine();
+
     }
 }
+
+

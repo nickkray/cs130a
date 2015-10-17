@@ -23,6 +23,8 @@ public:
     
     void createWallFromString(string wallString);
     
+    string serializePosts() const;
+    
     int countPosts(){
         return posts.countNodes();
     };

@@ -71,3 +71,11 @@ void User::readUserWall(string userWall){
 int User::countPosts(){
     return userWall.countPosts();
 }
+
+string User::serializeWall() const{
+    return userWall.serializePosts();
+}
+
+string User::serializeUser() const{
+    return ""+username+">>"+password+">>"+name+">>"+gender+"}";
+}

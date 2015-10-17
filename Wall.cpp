@@ -31,6 +31,18 @@ string Wall::printAllPosts() const{
     return postString;
 }
 
+string Wall::serializePosts() const{
+    string postString="{";
+    for(int i=0;i<posts.countNodes();i++){
+        WallPost* currentPost=posts.findAt(i);
+        postString+=currentPost->printPostData();
+        if(i<posts.countNodes()-1){
+            postString+="||";
+        }
+    }
+    return postString;
+}
+
 void Wall::createWallFromString(string wallString){
     
 }

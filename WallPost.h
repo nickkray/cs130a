@@ -26,6 +26,7 @@ class WallPost{
         void setMood(int newMood);
                 //print our post
         string printPost() const;
+        string printPostData() const;
 };
 
 #endif
