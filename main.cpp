@@ -3,7 +3,6 @@
 #include <string>
 #include <sstream>
 
-
 #include "linkedlist.h"
 
 #include "WallPost.h"
@@ -13,6 +12,9 @@
 
 #include "UserNetwork.h"
 
+#include "helpers.h"
+#include <time.h>
+
 using namespace std;
 
 void createUser(UserNetwork &network);
@@ -21,43 +23,14 @@ void loggedIn(UserNetwork &network, string username);
 void mainMenu(UserNetwork &network);
 void printLogo();
 void printLine();
-void writeStringToFile(string filename, string input);
-string readFromFile(string filename);
+
+
 
 linkedlist<string> split(string s, string delimiter);
 
 int main(int argc, const char * argv[]) {
     
     UserNetwork network = UserNetwork("network.data");
-    
-    /*
-     testing***********************
-     */
-    /*
-    network1.addUser("boris", "pass", "boris", "m");
-    network1.findUser("boris")->addWallPost("test post", 1);
-    network1.findUser("boris")->addWallPost("test post3", 5);
-    network1.findUser("boris")->addWallPost("test pos235235t", 2);
-    network1.findUser("boris")->addWallPost("t235235est post", 9);
-    network1.findUser("boris")->addWallPost("no mood post");
-    network1.findUser("boris")->addWallPost("no mood post2");
-    
-    network1.addUser("nick", "pass", "nick", "m");
-    network1.findUser("nick")->addWallPost("t4est post", 1);
-    network1.findUser("nick")->addWallPost("te3st post3", 5);
-    network1.findUser("nick")->addWallPost("te1st pos235235t", 2);
-    network1.findUser("nick")->addWallPost("t235235est 343post", 9);
-    network1.findUser("nick")->addWallPost("no 34moo3d post");
-    network1.findUser("nick")->addWallPost("n2o m4ood 3po4st2");
-    
-    network1.writeToFile("network.data");
-    
-    UserNetwork network = UserNetwork("network.data");
-    */
-//    UserNetwork network
-    
-    //**********************
-    
     mainMenu(network);
     return 0;
 }
@@ -69,15 +42,12 @@ void printLogo(){
 
 }
 
+
+
 void mainMenu(UserNetwork &network){
     printLogo();
     while(true){
-        
-        cout<<"\nTo create a new user, press 1. To login, press 2. To exit, press 0.";
-        cout<<"\nEnter choice:\n";
-        int choice;
-        cin>>choice;
-        switch(choice){
+            switch(takeIntInput("To create a new user, press 1. To login, press 2. To exit, press 0")){
             case 0:
                 //exit
                 exit(0);
@@ -88,6 +58,9 @@ void mainMenu(UserNetwork &network){
             break;
             case 2://login
                 login(network);
+            break;
+            default:
+                cout <<"What?"<<endl;
             break;
         }
     }
@@ -100,14 +73,10 @@ void createUser(UserNetwork &network){
     string gender;
     string name;
     
-    cout<<"Enter your full name:";
-    cin>>name;
-    cout<<"Create a username:";
-    cin>>username;
-    cout<<"Create a password:";
-    cin>>password;
-    cout<<"Gender?";
-    cin>>gender;
+    name=takeStringInput("Enter your full name(20 char max):", 20);
+    username=takeStringInput("Enter a username(10 char max):", 10);
+    password=takeStringInput("Enter a password(10 char max):", 10);
+    gender=takeStringInput("Enter your gender:", 1);
     
     if(username!="" && password!="" && name !="" && gender!=""){
         cout<<"Creating user...\n";
@@ -129,30 +98,24 @@ void login(UserNetwork &network){
     string username;
     string password;
     
-    cout <<"\nUsername:";
-    cin>>username;
-    cout<<"Password:";
-    cin>>password;
+    username=takeStringInput("Username:", 10);
+    password=takeStringInput("Password:", 10);
     
-    User* thisUser = network.findUser(username);
-    
-    if(thisUser->getUsername()!=""){
+    if(User* thisUser = network.findUser(username)){
         if(thisUser->getPassword()==password){
             printLine();
             cout<<"What's good "+thisUser->getName()+"!!"<<endl; //we authenticated correctly!
             loggedIn(network, username);
         }else{
-            cout<<"fuck..pw mismatch"; //password mismatch
+            cout<<"Account creds invalid."; //password mismatch
         }
     }else{
-        cout<<"fuck..user mismatch"; // //username mismatch
+        cout<<"Account creds invalid."; // //username mismatch
     }
     printLine();
 }
 
-void printLine(){
-    cout<<"\n\n---------------------------------------------------------------------------------------------------\n"<<endl;
-}
+
 
 void loggedIn(UserNetwork &network, string username){
     
@@ -166,35 +129,28 @@ void loggedIn(UserNetwork &network, string username){
         cout<<"3. Delete new post"<<endl;
         cout<<"4. Save and Logout\n"<<endl;
     
-        string index;
-        cin>>index;
-        if(index=="4"){
+        int index = takeIntInput("Enter a choice");
+        
+        if(index==4){
             network.writeToFile("network.data");
             cout << "Save successful. Goodbye!"<<endl;
             break;
-        }else if(index=="1"){
+        }else if(index==1){
             printLine();
             cout<<thisUser->printUserWall();
-        }else if(index=="2"){
+        }else if(index==2){
             string postText;
             int mood=-1;
-            cout<<"Enter your post:"<<endl;
-            cin>>postText;
-            cout<<"How are you feeling (0-10):"<<endl;
-            cin>>mood;
-            if(mood!=-1){
-                thisUser->addWallPost(postText);
-            }else{
-                thisUser->addWallPost(postText, mood);
-            }
+            postText = takeStringInput("Enter your post(max 256 char): ", 256);
+            mood = takeIntInput("Enter your mood(0-10)");
+            thisUser->addWallPost(postText, mood);
             cout<<"Post added, breh!"<<endl;
-        }else if(index=="3"){
+        }else if(index==3){
             printLine();
             int i;
             cout<<thisUser->printUserWall();
             if(thisUser->countPosts()>0){
-                cout<<"Which post would you like to delete:";
-                cin>>i;
+                i = takeIntInput("Which post would you like to delete:");
                 if(thisUser->deleteWallPost(i)){
                     cout<<"Post deleted successfully!"<<endl;
                 }else{
@@ -202,10 +158,9 @@ void loggedIn(UserNetwork &network, string username){
                 }
             }
         }else{
-            cout<<"Illegal input. Press enter to continue."<<endl;
-            cin.ignore();
+            cout<<"Illegal input."<<endl;
         }
-
+        printLine();
     }
 }
 

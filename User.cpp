@@ -1,5 +1,6 @@
 #include "User.h"
 #include "Wall.h"
+#include "helpers.h"
 
 User::User(string newUsername, string newPass, string newName, string newGen){
     userWall = Wall();
@@ -9,12 +10,14 @@ User::User(string newUsername, string newPass, string newName, string newGen){
 	gender =  newGen;
 }
 
-User::User(string newUsername, string newPass, string newName){
-	userWall = Wall();
-	username = newUsername;
-	password = newPass;
-	name = newName;
-	gender =  "chillin";
+User::User(string s){
+    linkedlist<string> u=split(s,">>");
+    
+    userWall = Wall();
+    username = *u.findAt(0);
+    password = *u.findAt(1);
+    name = *u.findAt(2);
+    gender = *u.findAt(3);
 }
 
 User::~User(){
@@ -65,7 +68,8 @@ string User::printUserWall() const{
     return userWall.printAllPosts();
 };
 
-void User::readUserWall(string userWall){
+void User::createWallFromString(string userData){
+    userWall.createWallFromString(userData);
 }
 
 int User::countPosts(){

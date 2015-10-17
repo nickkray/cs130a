@@ -1,5 +1,8 @@
 #include "WallPost.h"
 #include <string>
+#include <ctime>
+#include <sstream>
+#include <time.h>
 
 using namespace std;
 
@@ -28,27 +31,33 @@ void WallPost::setMood(int newMood){
 }
 
 string WallPost::printPost() const{
-    /*stringstream ss;
-    ss<<timestamp;
-    string timeStampStr = ss.str();
-    return "Feeling "+to_string(mood)+" - "+text+" ("+timeStampStr+")";*/
-    return getText();
+    struct tm * timeinfo = localtime (&timestamp);
+    string time=asctime(timeinfo);
+    return text+" ["+time.substr(0,time.length()-1)+"] (Mood: "+to_string(mood)+")";
+}
+
+WallPost::WallPost(string newText, int newMood, time_t newTimestamp){
+    text=newText;
+    mood=newMood;
+    timestamp = newTimestamp;
 }
 
 WallPost::WallPost(string newText, int newMood){
     text=newText;
     mood=newMood;
-    time_t timestamp = time(NULL);
+    timestamp = time(NULL);
 }
 
 WallPost::WallPost(string newText){
     text=newText;
-    time_t timestamp = time(NULL);
+    timestamp = time(NULL);
     mood = 5;
 }
 
 string WallPost::printPostData() const{
-    return text+">>"+to_string(timestamp)+">>"+to_string(mood);
+        ostringstream oss;
+        oss << &timestamp;
+    return text+">>"+oss.str()+">>"+to_string(mood);
 }
 
 WallPost::WallPost(){
@@ -58,4 +67,3 @@ WallPost::WallPost(){
 WallPost::~WallPost(){
     
 }
-

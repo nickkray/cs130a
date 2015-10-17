@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		167401611BD22B170064A201 /* helpers.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1674015F1BD22B170064A201 /* helpers.cpp */; };
 		16D476211BC636B600697883 /* linkedlist.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16D476151BC636B600697883 /* linkedlist.cpp */; };
 		16D476221BC636B600697883 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16D476171BC636B600697883 /* main.cpp */; };
 		16D476231BC636B600697883 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 16D476181BC636B600697883 /* README.md */; };
@@ -29,6 +30,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1674015F1BD22B170064A201 /* helpers.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = helpers.cpp; sourceTree = "<group>"; };
+		167401601BD22B170064A201 /* helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = helpers.h; sourceTree = "<group>"; };
 		16D4760B1BC636A900697883 /* cs130a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = cs130a; sourceTree = BUILT_PRODUCTS_DIR; };
 		16D476151BC636B600697883 /* linkedlist.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = linkedlist.cpp; path = ../../linkedlist.cpp; sourceTree = "<group>"; };
 		16D476161BC636B600697883 /* linkedlist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = linkedlist.h; path = ../../linkedlist.h; sourceTree = "<group>"; };
@@ -77,6 +80,8 @@
 				16D476151BC636B600697883 /* linkedlist.cpp */,
 				16D476161BC636B600697883 /* linkedlist.h */,
 				16D476171BC636B600697883 /* main.cpp */,
+				1674015F1BD22B170064A201 /* helpers.cpp */,
+				167401601BD22B170064A201 /* helpers.h */,
 				16D476181BC636B600697883 /* README.md */,
 				16D476191BC636B600697883 /* User.cpp */,
 				16D4761A1BC636B600697883 /* User.h */,
@@ -153,6 +158,7 @@
 				16D476261BC636B600697883 /* Wall.cpp in Sources */,
 				16D476221BC636B600697883 /* main.cpp in Sources */,
 				16D476211BC636B600697883 /* linkedlist.cpp in Sources */,
+				167401611BD22B170064A201 /* helpers.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -269,6 +275,7 @@
 				16D476141BC636A900697883 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -15,7 +15,7 @@ private:
 	
 public:
      User(string newUsername, string newPass, string newName, string newGen);
-     User(string newUsername, string newPass, string newName); //chillin on gender
+     User(string s); // properly formatted string
     ~User();
     
      string getUsername () const;
@@ -39,6 +39,7 @@ public:
      int countPosts();
     
      string serializeWall() const;
+     void createWallFromString(string userData);
 };
 
 #endif

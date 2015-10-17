@@ -14,11 +14,9 @@ class UserNetwork{
     
         void addUser(string newUsername, string newPass, string newName, string newGen);
         void addUser(string newUsername, string newPass, string newName);
+        void addUserFromString(string s);
         void removeUser(string userName); //remove by username
         User* findUser(string userName);//return a copy of the user
-
-        string printUsers() const;
-        linkedlist<User> readUsers() const;
     
         string serializeUserByUsername(string username);
         string serializeAllUsers();

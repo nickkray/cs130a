@@ -1,35 +1,11 @@
 #include "UserNetwork.h"
 #include "linkedlist.h"
+#include "helpers.h"
 #include <iostream>
 #include <stdlib.h>
-#include <fstream>
 #include <sstream>
 
-linkedlist<string> split(string s, string delimiter){ // "hey whats up" " ", ["hey","whats","up"]
-    size_t pos = 0;
-    linkedlist<string> tokens;
-    string token;
-    while ((pos = s.find(delimiter)) != std::string::npos) {
-        token = s.substr(0, pos);
-        tokens.add(token);
-        s.erase(0, pos + delimiter.length());
-    }
-    tokens.add(s);
-    return tokens;
-}
 
-void writeStringToFile(string filename, string input){
-    ofstream out(filename);
-    out << input;
-    out.close();
-}
-
-string readFromFile(string filename){
-    std::ifstream t(filename);
-    std::stringstream buffer;
-    buffer << t.rdbuf();
-    return buffer.str();
-}
 
 
 UserNetwork::UserNetwork(string filename){
@@ -37,24 +13,17 @@ UserNetwork::UserNetwork(string filename){
     
     linkedlist<string> users=split(s,"\n");
     int userCount=users.countNodes();
-    string username, pass, name, g;
+    string username, wallData;
     for(int i=0;i<userCount;i++){
         string userString=*users.findAt(i);
         linkedlist<string> userData=split(userString,"},{"); //userData should have user},{wall
-        string firstUserString=*userData.findAt(0);
-        linkedlist<string> user=split(firstUserString,">>");
-        linkedlist<string> wall=split(*userData.findAt(1),"||");
+        string firstUserString=*userData.findAt(0);//get our string with user data in it
         
-        username = *user.findAt(0);
-        pass = *user.findAt(1);
-        name = *user.findAt(2);
-        g = *user.findAt(3);
+        addUserFromString(firstUserString); //construct user object form this string
+        username=usernames.Last(); //get the username since its the last one added
+        wallData=*userData.findAt(1); //get walldata from this
         
-        addUser(username, pass, name ,g);
-        for(int j=0;j<wall.countNodes();j++){
-            linkedlist<string> post=split(*wall.findAt(j),">>");
-            findUser(username)->addWallPost(*post.findAt(0));
-        }
+        findUser(username)->createWallFromString(wallData);//use the User->Wall function to build this
     }
 }
 
@@ -71,9 +40,10 @@ void UserNetwork::addUser(string newUsername, string newPass, string newName, st
     usernames.add(newUsername);
 }
 
-void UserNetwork::addUser(string newUsername, string newPass, string newName){
-    userList.add(User(newUsername,newPass,newName,"chillin"));
-    usernames.add(newUsername);
+void UserNetwork::addUserFromString(string s){
+    User tmp=User(s);
+    userList.add(tmp);
+    usernames.add(tmp.getUsername());
 }
 
 User* UserNetwork::findUser(string userName){
@@ -87,7 +57,8 @@ User* UserNetwork::findUser(string userName){
 }
 
 void UserNetwork::removeUser(string userName){
-
+    userList.removeAt(usernames.find(userName));
+    usernames.removeAt(usernames.find(userName));
 }
 
 string UserNetwork::serializeUserByUsername(string username){
@@ -107,14 +78,6 @@ string UserNetwork::serializeAllUsers(){
         }
     }
     return serialization;
-}
-
-string UserNetwork::printUsers () const{
-    return "hey";
-}
-
-linkedlist<User> UserNetwork::readUsers () const{
-    return linkedlist<User>();
 }
 
 void UserNetwork::writeToFile(string filename){

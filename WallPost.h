@@ -13,6 +13,7 @@ class WallPost{
     public:
                 //const/deconst.
         WallPost();
+        WallPost(string newText, int newMood, time_t newTimestamp);
         WallPost(string newText, int newMood);
         WallPost(string newText);
         ~WallPost();

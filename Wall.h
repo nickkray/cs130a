@@ -21,7 +21,7 @@ public:
     
     string printAllPosts () const;
     
-    void createWallFromString(string wallString);
+    void createWallFromString(string wallData);
     
     string serializePosts() const;
     
