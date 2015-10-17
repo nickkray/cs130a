@@ -8,18 +8,18 @@ using namespace std;
 class WallPost{
     private:
         string text;
-        time_t timestamp;
+        string timestamp;
         int mood;
     public:
                 //const/deconst.
         WallPost();
-        WallPost(string newText, int newMood, time_t newTimestamp);
+        WallPost(string newText, int newMood, string newTimestamp);
         WallPost(string newText, int newMood);
         WallPost(string newText);
         ~WallPost();
                 //getters
         string getText() const;
-        time_t getTime() const;
+        string getTime() const;
         int getMood() const;
                 //setters
         void setText(string newText);

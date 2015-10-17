@@ -10,7 +10,7 @@ string WallPost::getText() const{
     return text;
 }
 
-time_t WallPost::getTime() const{
+string WallPost::getTime() const{
     return timestamp;
 }
 
@@ -31,12 +31,10 @@ void WallPost::setMood(int newMood){
 }
 
 string WallPost::printPost() const{
-    struct tm * timeinfo = localtime (&timestamp);
-    string time=asctime(timeinfo);
-    return text+" ["+time.substr(0,time.length()-1)+"] (Mood: "+to_string(mood)+")";
+    return text+" ["+timestamp+"] (Mood: "+to_string(mood)+")";
 }
 
-WallPost::WallPost(string newText, int newMood, time_t newTimestamp){
+WallPost::WallPost(string newText, int newMood, string newTimestamp){
     text=newText;
     mood=newMood;
     timestamp = newTimestamp;
@@ -45,19 +43,25 @@ WallPost::WallPost(string newText, int newMood, time_t newTimestamp){
 WallPost::WallPost(string newText, int newMood){
     text=newText;
     mood=newMood;
-    timestamp = time(NULL);
+    time_t t = time(NULL);
+    struct tm * timeinfo = localtime (&t);
+    string time=asctime(timeinfo);
+    time = time.substr(0,time.length()-1);
+    timestamp = time;
 }
 
 WallPost::WallPost(string newText){
     text=newText;
-    timestamp = time(NULL);
+    time_t t = time(NULL);
+    struct tm * timeinfo = localtime (&t);
+    string time=asctime(timeinfo);
+    time = time.substr(0,time.length()-1);
+    timestamp = time;
     mood = 5;
 }
 
 string WallPost::printPostData() const{
-        ostringstream oss;
-        oss << &timestamp;
-    return text+">>"+oss.str()+">>"+to_string(mood);
+    return text+">>"+timestamp+">>"+to_string(mood);
 }
 
 WallPost::WallPost(){

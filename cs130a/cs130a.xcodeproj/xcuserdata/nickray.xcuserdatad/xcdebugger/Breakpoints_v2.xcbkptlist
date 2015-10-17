@@ -170,11 +170,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../WallPost.cpp"
-            timestampString = "466764204.733437"
+            timestampString = "466810746.795542"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "60"
-            endingLineNumber = "60"
+            startingLineNumber = "64"
+            endingLineNumber = "64"
             landmarkName = "WallPost::printPostData()"
             landmarkType = "5">
             <Locations>
@@ -296,28 +296,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Wall.cpp"
-            timestampString = "466763321.126523"
+            timestampString = "466810682.909764"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "57"
-            endingLineNumber = "57"
+            startingLineNumber = "55"
+            endingLineNumber = "55"
             landmarkName = "Wall::createWallFromString(string wallData)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../WallPost.cpp"
-            timestampString = "466764204.733437"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "58"
-            endingLineNumber = "58"
-            landmarkName = "WallPost::printPostData()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

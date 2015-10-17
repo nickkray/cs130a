@@ -51,10 +51,8 @@ void Wall::createWallFromString(string wallData){
         linkedlist<string> post=split(*wall.findAt(j),">>");
         int mood=atoi((*post.findAt(2)).c_str());
         string postText=*post.findAt(0);
-        std::istringstream stream( *post.findAt(1) );
-        time_t t;
-        stream >> t;
-        addPost(WallPost(postText,mood,t));
+        string timestamp = *post.findAt(1);
+        addPost(WallPost(postText,mood,timestamp));
     }
 }
 
