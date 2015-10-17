@@ -14,6 +14,8 @@
 
 #include "helpers.h"
 #include <time.h>
+#include <cstdlib>
+#include <cstdio>
 
 using namespace std;
 
@@ -49,8 +51,8 @@ void mainMenu(UserNetwork &network){
     while(true){
             switch(takeIntInput("To create a new user, press 1. To login, press 2. To exit, press 0")){
             case 0:
-                //exit
                 exit(0);
+                
                 break;
             case 1:
                 //create
