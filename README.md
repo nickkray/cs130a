@@ -1,2 +1,5 @@
-# cs130a
-cs130a project repo.
+
+# cs130a project part 1
+
+Nick Ray - nray
+Boris Sadykoff - sadykoff
