@@ -53,13 +53,13 @@ linkedlist<string> split(string s, string delimiter){ // "hey whats up" " ", ["h
 }
 
 void writeStringToFile(string filename, string input){
-    ofstream out(filename);
+    ofstream out(filename.c_str());
     out << input;
     out.close();
 }
 
 string readFromFile(string filename){
-    std::ifstream t(filename);
+    std::ifstream t(filename.c_str());
     std::stringstream buffer;
     buffer << t.rdbuf();
     return buffer.str();

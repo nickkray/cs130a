@@ -1,11 +1,10 @@
-CXX = clang++ -g
+CXX = g++ 
 
-CXXFLAGS = -Wall
+CXXFLAGS = -g -std=c++11 -Wall
 
 all: gauchobook
 
 gauchobook: main.o helpers.o UserNetwork.o User.o Wall.o WallPost.o
-  ${CXX} $^ -o $@
-
+	${CXX} $^ -o $@
 clean:
-  /bin/rm -f gauchobook *.o
+	/bin/rm -f gauchobook *.o
