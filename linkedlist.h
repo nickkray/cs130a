@@ -18,14 +18,17 @@ public:
     
     linkedlist();
     ~linkedlist();
-    item First() const;
-    item Last() const;
+    item* First() const;
+    item* Last() const;
     
     int countNodes() const;
     void add(item li);
     bool removeAt(int index);
     item* findAt(int index) const;
+    bool addAt(int index, item li);
     void clear();
+    
+    bool setAt(int index, item li);
     
     int find(item li) const;
     
@@ -88,14 +91,52 @@ void linkedlist<item>::add(item li){        //add item
 
 
 template <typename item>
+bool linkedlist<item>::addAt(int index, item li){       //add at index, returns if successful
+    node* currentNode = first;
+    if (index <= count+1 && index > 0){ // <count+2 works for 1<0+2 in case list is empty// only increment if index>1 otherwise we're at first
+        int i = 0;
+        while(i < index-1){ // go to one beforebefore the index we're looking for, since we add it before
+            currentNode = currentNode->next;
+            i++;
+        }
+    }else{
+        return false;
+    }
+    if(index==1 && count == 0){ // place it when empty
+        first = new node(li);
+        last = first;
+    }else if(index>1){ //place at 1 and there are atleast 2
+        currentNode->prev->next= new node (li);
+        currentNode->prev->next->next = currentNode->next;
+        currentNode->prev = currentNode->prev->next;
+    }else{ //trying to place it before 1 (so at 0)
+        node* tmp = currentNode;
+        first = new node(li);
+        first->next = tmp;
+        tmp->prev = first;
+    }
+    count++;
+    return true;
+}
+
+
+
+template <typename item>
 bool linkedlist<item>::removeAt(int index){     //remove at index,false if unsuccessful
+    if(!first || index>=count){
+        return false;
+    }
     if (index <= count){
         node* currentNode = first;
         for (int i = 0; i <= index; i++){
             currentNode = currentNode->next;
         }
-        currentNode->prev->next = currentNode->next;
-        currentNode->next->prev = currentNode->prev;
+        if(currentNode->prev){
+            currentNode->prev->next = currentNode->next;
+        }
+        if(currentNode->next){
+            currentNode->next->prev = currentNode->prev;
+        }
         if(index==0){ // if first, fix first
             first = currentNode->next;
         }
@@ -113,6 +154,23 @@ bool linkedlist<item>::removeAt(int index){     //remove at index,false if unsuc
 
 
 template <typename item>
+bool linkedlist<item>::setAt(int index, item li){       //set at index
+    node* currentNode = first;
+    if (index < 0 ) index =count + index;
+    if (index <= count && index > -1){
+        int i = 0;
+        while(i < index){
+            currentNode = currentNode->next;
+            i++;
+        }
+    }else{
+        return false;
+    }
+    currentNode->data = li;
+    return true;
+}
+
+template <typename item>
 item* linkedlist<item>::findAt(int index) const{       //find at index
     node* currentNode = first;
     if (index < 0 ) index =count + index;
@@ -122,6 +180,8 @@ item* linkedlist<item>::findAt(int index) const{       //find at index
             currentNode = currentNode->next;
             i++;
         }
+    }else{
+        return nullptr;
     }
     
     return &(currentNode->data);
@@ -129,13 +189,13 @@ item* linkedlist<item>::findAt(int index) const{       //find at index
 
 
 template <typename item>
-item linkedlist<item>::First() const{     //first item
-    return first->data;
+item* linkedlist<item>::First() const{     //first item
+    return &(first->data);
 }
 
 template <typename item>
-item linkedlist<item>::Last() const{      //last item
-    return last->data;
+item* linkedlist<item>::Last() const{      //last item
+    return &(last->data);
 }
 
 

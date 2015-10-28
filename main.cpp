@@ -15,6 +15,8 @@
 #include "helpers.h"
 #include <time.h>
 
+#include "list.h"
+
 using namespace std;
 
 void createUser(UserNetwork &network);
@@ -30,15 +32,28 @@ linkedlist<string> split(string s, string delimiter);
 
 int main(int argc, const char * argv[]) {
     
-    UserNetwork network = UserNetwork("network.data");
-    mainMenu(network);
+    arrList<int> aa;
+    cout<<aa.count()<<endl;
+    int i;
+    for(i=0;i<100;i++){
+        aa.insert(1,i);//cannot be 0
+    }
+    cout << "our count:"<<aa.count()<<endl;
+    for(i=0;i<100;i++){
+        cout<<aa.get(i)<<endl;
+    }
+    
+    cout<<aa.count();
+    
+    //UserNetwork network = UserNetwork("network.data");
+    //mainMenu(network);
     return 0;
 }
 
 void printLogo(){
    cout <<"***********************************************************************************************************\n";
     cout <<"     _______  _______  __   __  _______  __   __  _______  _______  _______  _______  ___   _ \n    |       ||   _   ||  | |  ||       ||  | |  ||       ||  _    ||       ||       ||   | | |\n    |    ___||  |_|  ||  | |  ||       ||  |_|  ||   _   || |_|   ||   _   ||   _   ||   |_| |\n    |   | __ |       ||  |_|  ||       ||       ||  | |  ||       ||  | |  ||  | |  ||      _|\n    |   ||  ||       ||       ||      _||       ||  |_|  ||  _   | |  |_|  ||  |_|  ||     |_ \n    |   |_| ||   _   ||       ||     |_ |   _   ||       || |_|   ||       ||       ||    _  |\n    |_______||__| |__||_______||_______||__| |__||_______||_______||_______||_______||___| |_|\n";
-    cout <<"***********************************************************************************************************";
+    cout <<"***********************************************************************************************************\n";
 
 }
 
