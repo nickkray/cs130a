@@ -126,7 +126,7 @@ bool arrList<T>::insert(int pos, const T & item){
             maxElement = capacity-1; // this will be our new maxElement (n+1)
             T* newArr = new T[capacity*2];
             capacity*=2;
-            memcpy(newArr, items, capacity/2 * sizeof(T));
+            std::memcpy(newArr, items, capacity/2 * sizeof(T));
             delete[] items;
             items = newArr;
         }
@@ -151,7 +151,7 @@ bool arrList<T>::remove(int pos){
         if(maxElement<capacity/2 && capacity>8){ // if we can reduce capacity, do so
             T* newArr = new T[capacity/2];
             capacity/=2;
-            memcpy(newArr, items, capacity * sizeof(T));
+            std::memcpy(newArr, items, capacity * sizeof(T));
             delete [] items;
             items = newArr;
         }
