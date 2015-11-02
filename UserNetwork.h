@@ -22,6 +22,13 @@ class UserNetwork{
         string serializeAllUsers();
     
         void writeToFile(string filename);
+    
+        arrList<string> findUserByQuery(string partial);
+    
+        int findUserIndex(string userName);
+    
+        string printPendingRequests(User* thisUser);
+        string printFriends(User* thisUser);
 };
 
 

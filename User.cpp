@@ -18,6 +18,14 @@ User::User(string s){
     password = *u.findAt(1);
     name = *u.findAt(2);
     gender = *u.findAt(3);
+    string t = *u.findAt(4);
+    if(t.size()>0){
+        linkedlist<string> tmpFriends = split(t,";");
+        for(int i=0;i<tmpFriends.countNodes();i++){
+            string a = *tmpFriends.findAt(i);
+            friends.insert(1, atoi(a.c_str()) );
+        }
+    }
 }
 
 User::~User(){
@@ -81,5 +89,16 @@ string User::serializeWall() const{
 }
 
 string User::serializeUser() const{
-    return ""+username+">>"+password+">>"+name+">>"+gender+"}";
+    string friendsString="";
+    for(int i=0;i<friends.count();i++){
+        friendsString+=*friends.get(i);
+        if(i<friends.count()-1){
+            friendsString+=";";
+        }
+    }
+    return ""+username+">>"+password+">>"+name+">>"+gender+">>"+friendsString+"}";
+}
+
+void User::addFriend(int userIndex){
+    friends.insert(1, userIndex);
 }

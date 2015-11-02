@@ -27,7 +27,7 @@ string Wall::printAllPosts() const{
         return "Nothing here yet, post something!";
     }
     string postString;
-    for(int i=0;i<posts.count();i++){
+    for(int i=0;i<posts.count()-1;i++){
         postString+=to_string(i)+") "+posts.get(i)->printPost()+"\n";
     }
     return postString;

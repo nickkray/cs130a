@@ -12,8 +12,10 @@ private:
     string password;
     string name;
     string gender;
+    arrList<int> friends;
 	
 public:
+    
      User(string newUsername, string newPass, string newName, string newGen);
      User(string s); // properly formatted string
     ~User();
@@ -22,6 +24,10 @@ public:
      string getPassword () const;
      string getName () const;
      string getGender () const;
+    
+     arrList<int> * getFriends(){
+         return & friends;
+     }
 	
      void setName(string newName);
      void setgender(string newGender);
@@ -40,6 +46,8 @@ public:
     
      string serializeWall() const;
      void createWallFromString(string userData);
+    
+     void addFriend(int userIndex);
 };
 
 #endif

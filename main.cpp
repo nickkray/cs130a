@@ -139,18 +139,50 @@ void loggedIn(UserNetwork &network, string username){
     
     while(true){
         
+        cout<< "Pending friend requests: \n " << network.printPendingRequests(thisUser)<<endl;
+        
         cout<<"\nWhat would you like to do?"<<endl;
         cout<<"1. Display Wall"<<endl;
         cout<<"2. Add new post"<<endl;
         cout<<"3. Delete new post"<<endl;
-        cout<<"4. Save and Logout\n"<<endl;
+        cout<<"4. Search for a user"<<endl;
+        cout<<"5. Accept a friend request"<<endl;
+        cout<<"6. See friends list"<<endl;
+        cout<<"7. Save and Logout"<<endl;
+        cout<<"8. Delete your account\n"<<endl;
     
         int index = takeIntInput("Enter a choice");
         
-        if(index==4){
+        if(index ==8){
+            string q= takeStringInput("Are you sure? (y/N)", 1);
+            if(q=="y"){
+                network.removeUser(thisUser->getUsername());
+                network.writeToFile("network.data");
+                cout << "Delete successful. Goodbye!"<<endl;
+                break;
+            }
+        }
+        
+        if(index==7){
             network.writeToFile("network.data");
             cout << "Save successful. Goodbye!"<<endl;
             break;
+        }else if(index==6){
+            cout<< "Friends:\n"<<network.printFriends(thisUser)<<endl;
+        }else if(index==5){
+            string q = takeStringInput("Type the name of the friend request you'd like to accept: ", 256);
+            network.findUser(q)->addFriend(network.findUserIndex(thisUser->getUsername()));
+        }else if(index==4){
+            string q = takeStringInput("Enter your search query (name of user): ", 256);
+            arrList<string> matches = network.findUserByQuery(q);
+            for(int i=0;i<matches.count();i++){
+                cout<< i << ") "<<*matches.get(i)<<endl;
+            }
+            int q2 = takeIntInput("To add user as friend, enter corresponding number. Otherwise, enter -1: ");
+            if(q2==-1)
+                continue;
+            network.findUser(*matches.get(q2))->addFriend(network.findUserIndex(thisUser->getUsername())); // give the person you want to friend a link to you
+            cout << "Friend request sent!"<<endl;
         }else if(index==1){
             printLine();
             cout<<thisUser->printUserWall();
