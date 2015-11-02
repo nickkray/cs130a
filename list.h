@@ -2,6 +2,7 @@
 #define cs130a_list_h
 
 #include "linkedlist.h"
+#include <cstring>
 
 template <class T>
 class List {
