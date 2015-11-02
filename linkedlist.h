@@ -1,6 +1,13 @@
 #ifndef _linkedlist_h
 #define _linkedlist_h
 
+#include "WallPost.h"
+
+static bool operator==(const WallPost& a1, const WallPost& a2) {
+    return a1.getText()==a2.getText() && a1.getTime()==a2.getTime() && a1.getMood() == a2.getMood();
+}
+
+
 template <typename item>
 class linkedlist{
 private:
@@ -180,9 +187,9 @@ item* linkedlist<item>::findAt(int index) const{       //find at index
             currentNode = currentNode->next;
             i++;
         }
-    }else{
-        return nullptr;
-    }
+    }//else{
+    //    return nullptr;
+    //}
     
     return &(currentNode->data);
 }

@@ -5,6 +5,15 @@
 #include <time.h>
 
 using namespace std;
+/*
+ string text;
+ string timestamp;
+ int mood;
+ 
+ */
+
+
+
 
 string WallPost::getText() const{
     return text;

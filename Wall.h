@@ -4,10 +4,12 @@
 #include <string>
 #include "linkedlist.h"
 #include "WallPost.h"
+#include "list.h"
 
 class Wall{
 private:
-    linkedlist<WallPost> posts;
+    //linkedlist<WallPost> posts;
+    llList<WallPost> posts;
     string username;
 public:
     Wall();
@@ -26,7 +28,7 @@ public:
     string serializePosts() const;
     
     int countPosts(){
-        return posts.countNodes();
+        return posts.count();
     };
 };
 

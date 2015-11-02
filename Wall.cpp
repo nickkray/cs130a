@@ -15,30 +15,30 @@ void Wall::setUsername(string newUsername){
 }
 
 void Wall::addPost(WallPost newPost){
-    posts.add(newPost);
+    posts.insert(1,newPost);
 }
 
 bool Wall::removePost(int index){
-    return posts.removeAt(index);
+    return posts.remove(index);
 }
 
 string Wall::printAllPosts() const{
-    if(posts.countNodes()==0){
+    if(posts.count()==0){
         return "Nothing here yet, post something!";
     }
     string postString;
-    for(int i=0;i<posts.countNodes();i++){
-        postString+=to_string(i)+") "+posts.findAt(i)->printPost()+"\n";
+    for(int i=0;i<posts.count();i++){
+        postString+=to_string(i)+") "+posts.get(i)->printPost()+"\n";
     }
     return postString;
 }
 
 string Wall::serializePosts() const{
     string postString="{";
-    for(int i=0;i<posts.countNodes();i++){
-        WallPost* currentPost=posts.findAt(i);
+    for(int i=0;i<posts.count();i++){
+        WallPost* currentPost=posts.get(i);
         postString+=currentPost->printPostData();
-        if(i<posts.countNodes()-1){
+        if(i<posts.count()-1){
             postString+="||";
         }
     }

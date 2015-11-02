@@ -33,7 +33,7 @@ void printLine();
 linkedlist<string> split(string s, string delimiter);
 
 int main(int argc, const char * argv[]) {
-    
+    /*
     arrList<int> aa;
     cout<<aa.count()<<endl;
     int i;
@@ -46,9 +46,9 @@ int main(int argc, const char * argv[]) {
     }
     
     cout<<aa.count();
-    
-    //UserNetwork network = UserNetwork("network.data");
-    //mainMenu(network);
+    */
+    UserNetwork network = UserNetwork("network.data");
+    mainMenu(network);
     return 0;
 }
 
@@ -67,7 +67,6 @@ void mainMenu(UserNetwork &network){
             switch(takeIntInput("To create a new user, press 1. To login, press 2. To exit, press 0")){
             case 0:
                 exit(0);
-                
                 break;
             case 1:
                 //create

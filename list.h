@@ -10,7 +10,7 @@ public:
     /* Inserts the item right before position pos, growing the list by 1.
      pos must be between 0 and the current length of the list.
      (feel free return bool, if you want.) */
-    virtual void remove (int pos){};
+    virtual bool remove (int pos){return -1;};
     /* Removes the element at position pos, shrinking the list by 1.
      pos must be between 0 and the current length of the list minus 1. */
     
@@ -19,7 +19,7 @@ public:
      Does not change the length of the list.
      pos must be between 0 and the current length of the list minus 1. */
     
-    virtual T const & get (int pos) const{return NULL;};
+    virtual T * get (int pos) const{return NULL;};
     /* returns the item at position pos, not changing the list.
      pos must be between 0 and the current length of the list minus 1. */
     virtual int find(T item){return -1;};
@@ -29,16 +29,15 @@ public:
 };
 
 
-
 template <class T>
 class llList : public List<T> {
 private:
     linkedlist<T> list;
 public:
     bool insert (int pos, const T & item);
-    void remove (int pos);
+    bool remove (int pos);
     void set (int pos, const T & item);
-    T const & get (int pos) const;
+    T * get (int pos) const;
     int find(T item);
     int count() const;
     T& first();
@@ -75,8 +74,8 @@ bool llList<T>::insert(int pos, const T & item){
 
 
 template <class T>
-void llList<T>::remove(int pos){
-    list.removeAt(pos);
+bool llList<T>::remove(int pos){
+    return list.removeAt(pos);
 }
 
 template <class T>
@@ -85,8 +84,8 @@ void llList<T>::set(int pos, const T & item){
 }
 
 template <class T>
-T const & llList<T>::get(int pos) const{
-    return *list.findAt(pos);
+T * llList<T>::get(int pos) const{
+    return list.findAt(pos);
 }
 
 template <class T>
@@ -104,9 +103,9 @@ public:
         items = new T[capacity];
     }
     bool insert (int pos, const T & item);
-    void remove (int pos);
+    bool remove (int pos);
     void set (int pos, const T & item);
-    T const & get (int pos) const;
+    T * get (int pos) const;
     
     int find(T item);
     int count() const;
@@ -143,7 +142,7 @@ bool arrList<T>::insert(int pos, const T & item){
 
 
 template <class T>
-void arrList<T>::remove(int pos){
+bool arrList<T>::remove(int pos){
     if(pos>-1 && pos<=maxElement){
         for(int i=pos;i<maxElement;i++){
             items[i] = items[i+1];
@@ -156,7 +155,9 @@ void arrList<T>::remove(int pos){
             delete [] items;
             items = newArr;
         }
+        return true;
     }
+    return false;
 }
 
 template <class T>
@@ -167,8 +168,8 @@ void arrList<T>::set(int pos, const T & item){
 }
 
 template <class T>
-T const & arrList<T>::get(int pos) const{
-    return items[pos];
+T * arrList<T>::get(int pos) const{
+    return &items[pos];
 }
 
 

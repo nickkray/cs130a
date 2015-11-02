@@ -10,7 +10,7 @@
 
 UserNetwork::UserNetwork(string filename){
     string s = readFromFile(filename);
-    
+    s="";
     linkedlist<string> users=split(s,"\n");
     int userCount=users.countNodes();
     string username, wallData;
@@ -20,7 +20,7 @@ UserNetwork::UserNetwork(string filename){
         string firstUserString=*userData.findAt(0);//get our string with user data in it
         
         addUserFromString(firstUserString); //construct user object form this string
-        username=usernames.Last(); //get the username since its the last one added
+        username=*usernames.Last(); //get the username since its the last one added
         wallData=*userData.findAt(1); //get walldata from this
         
         findUser(username)->createWallFromString(wallData);//use the User->Wall function to build this
