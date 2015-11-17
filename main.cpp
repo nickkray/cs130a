@@ -2,7 +2,7 @@
 
 #include <string>
 #include <sstream>
-
+#include <algorithm>
 
 #include "WallPost.h"
 #include "Wall.h"
