@@ -2,6 +2,7 @@
 #define ____WallPost__
 
 #include <string>
+#include <list>
 
 using namespace std;
 
@@ -10,12 +11,17 @@ class WallPost{
         string text;
         string timestamp;
         int mood;
+        string author;
+    
     public:
+        bool isResponse = false;
+        int responses = 0;
                 //const/deconst.
         WallPost();
-        WallPost(string newText, int newMood, string newTimestamp);
-        WallPost(string newText, int newMood);
-        WallPost(string newText);
+        WallPost(string author, string newText, int newMood, string newTimestamp);
+        WallPost(string author, string newText, int newMood);
+        WallPost(string author, string newText);
+    
         ~WallPost();
                 //getters
         string getText() const;
@@ -28,6 +34,7 @@ class WallPost{
                 //print our post
         string printPost() const;
         string printPostData() const;
+        string getAuthor() const;
 };
 
 #endif

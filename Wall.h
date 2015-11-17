@@ -4,12 +4,12 @@
 #include <string>
 #include "linkedlist.h"
 #include "WallPost.h"
-#include "list.h"
+#include <list>
 
 class Wall{
 private:
     //linkedlist<WallPost> posts;
-    llList<WallPost> posts;
+    list<WallPost> posts;
     string username;
 public:
     Wall();
@@ -28,8 +28,14 @@ public:
     string serializePosts() const;
     
     int countPosts(){
-        return posts.count();
+        return posts.size();
     };
+    
+    string printAllPostsFromAuthor(string author);
+    
+    bool removeFriendsPost(int i, string author);
+    
+    void addPostResponse(WallPost newPost, int index);
 };
 
 #endif

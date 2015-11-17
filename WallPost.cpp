@@ -13,8 +13,6 @@ using namespace std;
  */
 
 
-
-
 string WallPost::getText() const{
     return text;
 }
@@ -43,13 +41,14 @@ string WallPost::printPost() const{
     return text+" ["+timestamp+"] (Mood: "+to_string(mood)+")";
 }
 
-WallPost::WallPost(string newText, int newMood, string newTimestamp){
+WallPost::WallPost(string newAuthor, string newText, int newMood, string newTimestamp){
     text=newText;
     mood=newMood;
     timestamp = newTimestamp;
+    author = newAuthor;
 }
 
-WallPost::WallPost(string newText, int newMood){
+WallPost::WallPost(string newAuthor, string newText, int newMood){
     text=newText;
     mood=newMood;
     time_t t = time(NULL);
@@ -57,9 +56,10 @@ WallPost::WallPost(string newText, int newMood){
     string time=asctime(timeinfo);
     time = time.substr(0,time.length()-1);
     timestamp = time;
+    author = newAuthor;
 }
 
-WallPost::WallPost(string newText){
+WallPost::WallPost(string newAuthor, string newText){
     text=newText;
     time_t t = time(NULL);
     struct tm * timeinfo = localtime (&t);
@@ -67,10 +67,12 @@ WallPost::WallPost(string newText){
     time = time.substr(0,time.length()-1);
     timestamp = time;
     mood = 5;
+    author = newAuthor;
 }
 
+
 string WallPost::printPostData() const{
-    return text+">>"+timestamp+">>"+to_string(mood);
+    return author+">>"+text+">>"+timestamp+">>"+to_string(mood);
 }
 
 WallPost::WallPost(){
@@ -79,4 +81,8 @@ WallPost::WallPost(){
 
 WallPost::~WallPost(){
     
+}
+
+string WallPost::getAuthor() const{
+    return author;
 }

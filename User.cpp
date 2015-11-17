@@ -10,6 +10,7 @@ User::User(string newUsername, string newPass, string newName, string newGen){
 	gender =  newGen;
 }
 
+
 User::User(string s){
     linkedlist<string> u=split(s,">>");
     
@@ -23,7 +24,7 @@ User::User(string s){
         linkedlist<string> tmpFriends = split(t,";");
         for(int i=0;i<tmpFriends.countNodes();i++){
             string a = *tmpFriends.findAt(i);
-            friends.insert(1, atoi(a.c_str()) );
+            friends.push_back(a.c_str());
         }
     }
 }
@@ -60,12 +61,16 @@ void User::setgender(string newGender){
 	gender = newGender;
 }
 
-void User::addWallPost(string text){
-    userWall.addPost(WallPost(text));
+void User::addWallPost(string author, string text){
+    userWall.addPost(WallPost(author, text));
 }
 
-void User::addWallPost(string text, int mood){
-    userWall.addPost(WallPost(text,mood));
+void User::addWallPost(string author, string text, int mood){
+    userWall.addPost(WallPost(author, text,mood, author));
+}
+
+void User::addWallPostResponse(string author, string text, int mood, int i){
+    userWall.addPostResponse(WallPost(author, "  |____"+text,mood, author),i);
 }
 
 bool User::deleteWallPost(int i){
@@ -90,15 +95,51 @@ string User::serializeWall() const{
 
 string User::serializeUser() const{
     string friendsString="";
-    for(int i=0;i<friends.count();i++){
-        friendsString+=*friends.get(i);
-        if(i<friends.count()-1){
+    int j=0;
+    for(auto i = friends.begin();i!=friends.end();i++){
+        friendsString+=*i;
+        if(j<friends.size()-1){
             friendsString+=";";
         }
+        j++;
+        // we removed the checking if second to last for the , thing uhhhh
     }
     return ""+username+">>"+password+">>"+name+">>"+gender+">>"+friendsString+"}";
 }
 
-void User::addFriend(int userIndex){
-    friends.insert(1, userIndex);
+void User::addFriend(string userIndex){
+    friends.push_back(userIndex);
+}
+
+string User::getFriendRequests(){
+    string requests="";
+    for(auto it = friendRequests.begin();it!=friendRequests.end();++it){
+        requests+=*it+"\n";
+    }
+    return requests;
+}
+
+bool User::existsFriendRequest(string username){
+    for(auto it = friendRequests.begin();it!=friendRequests.end();++it){
+        if(*it == username){
+            return true;
+        }
+    }
+    return false;
+}
+
+void User::deleteFriendRequest(string username){
+    friendRequests.remove(username);
+}
+
+void User::addFriendRequest(string username){
+    friendRequests.push_back(username);
+}
+
+string User::printUserWallFromAuthor(string author){
+        return userWall.printAllPostsFromAuthor(author);
+}
+
+bool User::deleteFriendsWallPost(int i, string author){
+    return userWall.removeFriendsPost(i, author);
 }

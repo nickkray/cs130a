@@ -12,7 +12,8 @@ private:
     string password;
     string name;
     string gender;
-    arrList<int> friends;
+    list<string> friends;
+    list<string> friendRequests;
 	
 public:
     
@@ -25,7 +26,7 @@ public:
      string getName () const;
      string getGender () const;
     
-     arrList<int> * getFriends(){
+     list<string> * getFriends(){
          return & friends;
      }
 	
@@ -33,8 +34,8 @@ public:
      void setgender(string newGender);
      void setPassword(string newPass);
 	
-     void addWallPost(string text);
-     void addWallPost(string text, int mood);
+     void addWallPost(string author, string text);
+     void addWallPost(string author, string text, int mood);
      bool deleteWallPost(int i);
     
      string printUserWall () const;
@@ -47,7 +48,27 @@ public:
      string serializeWall() const;
      void createWallFromString(string userData);
     
-     void addFriend(int userIndex);
+     void addFriend(string userIndex);
+
+     string getFriendRequests();
+     void addFriendRequest(string username);
+    
+     bool existsFriendRequest(string username);
+    
+     void deleteFriendRequest(string username);
+    
+     string printUserWallFromAuthor(string author);
+    
+    bool deleteFriendsWallPost(int i, string author);
+    
+    void addWallPostResponse(string author, string text, int mood, int i);
 };
+/*
+bool operator==(const User& lhs, const User& rhs){
+    if(lhs==rhs){
+        return true;
+    }
+    return false;
+}*/
 
 #endif

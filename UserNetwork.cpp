@@ -4,10 +4,7 @@
 #include <iostream>
 #include <stdlib.h>
 #include <sstream>
-
-#include "User.h"
-
-
+#include <algorithm>
 
 
 UserNetwork::UserNetwork(string filename){
@@ -16,12 +13,14 @@ UserNetwork::UserNetwork(string filename){
     int userCount=users.countNodes();
     string username, wallData;
     for(int i=0;i<userCount;i++){
+        if(username=="")
+            continue;
         string userString=*users.findAt(i);
         linkedlist<string> userData=split(userString,"},{"); //userData should have user},{wall
         string firstUserString=*userData.findAt(0);//get our string with user data in it
         
         addUserFromString(firstUserString); //construct user object form this string
-        username=*usernames.Last(); //get the username since its the last one added
+        username=usernames.back(); //get the username since its the last one added
         wallData=*userData.findAt(1); //get walldata from this
         
         findUser(username)->createWallFromString(wallData);//use the User->Wall function to build this
@@ -29,58 +28,70 @@ UserNetwork::UserNetwork(string filename){
 }
 
 UserNetwork::UserNetwork(){
-    userList = linkedlist<User>();
+    userList = list<User>();
 }
 
 UserNetwork::~UserNetwork(){
-    userList.~linkedlist();
+    userList.~list();
 }
 
-arrList<string> UserNetwork::findUserByQuery(string partial){
-    arrList<string> matches;
-    for(int i=0;i<usernames.countNodes();i++){
-        size_t found = usernames.findAt(i)->find(partial);
+list<string> UserNetwork::findUserByQuery(string partial){
+    list<string> matches;
+    for(auto usernamesIt = usernames.begin();usernamesIt!=usernames.end();++usernamesIt){
+        size_t found = (*usernamesIt).find(partial);
         if (found!=std::string::npos){
-            matches.insert(1,*usernames.findAt(i));
+            auto it = matches.begin();
+            matches.insert(it,*usernamesIt);
         }
     }
     return matches;
 }
 
 void UserNetwork::addUser(string newUsername, string newPass, string newName, string newGen){
-    userList.add(User(newUsername,newPass,newName,newGen));
-    usernames.add(newUsername);
+    userList.push_back(User(newUsername,newPass,newName,newGen));
+    usernames.push_back(newUsername);
 }
 
 void UserNetwork::addUserFromString(string s){
     User tmp=User(s);
-    userList.add(tmp);
-    usernames.add(tmp.getUsername());
+    userList.push_back(tmp);
+    usernames.push_back(tmp.getUsername());
 }
 
 User* UserNetwork::findUser(string userName){
-    int index=usernames.find(userName);
-    if(index!=-1){
-        return userList.findAt(index);
-    }else{
-        return NULL;
+    if(userName =="")
+        return nullptr;
+    for(auto usernamesIt = userList.begin();usernamesIt!=userList.end();++usernamesIt){
+        if(userName == usernamesIt->getUsername()){
+            return &(*usernamesIt);
+        }
     }
-    return NULL;
+    return nullptr;
 }
 
 int UserNetwork::findUserIndex(string userName){
-    int index=usernames.find(userName);
-    return index;
+    int i=0;
+    for(auto usernamesIt = userList.begin();usernamesIt!=userList.end();++usernamesIt){
+        if(userName == usernamesIt->getUsername()){
+            return i;
+        }
+        i++;
+    }
+    return -1;
 }
 
 void UserNetwork::removeUser(string userName){
-    userList.removeAt(usernames.find(userName));
-    usernames.removeAt(usernames.find(userName));
+    usernames.remove(userName);
+    for(auto usernamesIt = userList.begin();usernamesIt!=userList.end();++usernamesIt){
+        if(userName == usernamesIt->getUsername()){
+            userList.erase(usernamesIt);
+        }
+    }
 }
 
 string UserNetwork::serializeUserByUsername(string username){
     User* thisUser = findUser(username);
-    if(thisUser!=NULL){
+    if(thisUser!=nullptr){
         return thisUser->serializeUser()+","+thisUser->serializeWall()+"";
     }
         return "";
@@ -88,11 +99,13 @@ string UserNetwork::serializeUserByUsername(string username){
 
 string UserNetwork::serializeAllUsers(){
     string serialization="";
-    for(int i=0;i<usernames.countNodes();i++){
-        serialization+=serializeUserByUsername(*usernames.findAt(i));
-        if(i<usernames.countNodes()-1){
+    int i=0;
+    for(auto usernamesIt = userList.begin();usernamesIt!=userList.end();++usernamesIt){
+        serialization+=serializeUserByUsername(usernamesIt->getUsername());
+        if(i<usernames.size()-1){
             serialization+="\n";
         }
+        i++;
     }
     return serialization;
 }
@@ -101,24 +114,15 @@ void UserNetwork::writeToFile(string filename){
     writeStringToFile(filename,serializeAllUsers());
 }
 
-string UserNetwork::printPendingRequests(User* thisUser){
-    string requests="";
-    int thisUserIndex = findUserIndex(thisUser->getUsername());
-    arrList<int> * indexList = thisUser->getFriends();
-    for(int i=0;i<indexList->count();i++){
-        if(userList.findAt(*indexList->get(i))->getFriends()->find(thisUserIndex)==-1) //make sure this is one-way
-            requests+= *usernames.findAt(*indexList->get(i)) + "\n";
-    }
-    return requests;
+void UserNetwork::createFriendRequest(User* from, User* to){
+    to->addFriendRequest(from->getUsername());
 }
 
 string UserNetwork::printFriends(User* thisUser){
     string requests="";
-    int thisUserIndex = findUserIndex(thisUser->getUsername());
-    arrList<int> * indexList = thisUser->getFriends();
-    for(int i=0;i<indexList->count();i++){
-        if(userList.findAt(*indexList->get(i))->getFriends()->find(thisUserIndex)!=-1) //make sure this is one-way
-            requests+= *usernames.findAt(*indexList->get(i)) + "\n";
+    list<string> * friends = thisUser->getFriends();
+    for(auto it = friends->begin();it!=friends->end();++it){
+            requests+=*it+"\n";
     }
     return requests;
 }

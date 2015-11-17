@@ -1,12 +1,12 @@
 #ifndef ____UserNetwork__
 #define ____UserNetwork__
-#include "linkedlist.h"
+
 #include "User.h"
 
 class UserNetwork{
     private:
-        linkedlist<User> userList;
-        linkedlist<string> usernames;
+        list<User> userList;
+        list<string> usernames;
     public:
         UserNetwork();
         UserNetwork(string s);
@@ -23,12 +23,12 @@ class UserNetwork{
     
         void writeToFile(string filename);
     
-        arrList<string> findUserByQuery(string partial);
+        list<string> findUserByQuery(string partial);
     
         int findUserIndex(string userName);
-    
-        string printPendingRequests(User* thisUser);
         string printFriends(User* thisUser);
+    
+        void createFriendRequest(User* from, User* to);
 };
 
 
